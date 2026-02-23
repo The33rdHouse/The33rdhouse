@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1764926153388,
+      "tag": "0000_famous_skullbuster",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1764931469965,
+      "tag": "0001_oval_puff_adder",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1764943120455,
+      "tag": "0002_sweet_nuke",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1764944290939,
+      "tag": "0003_acoustic_lord_hawal",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1765023076073,
+      "tag": "0004_fluffy_scourge",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1765031817701,
+      "tag": "0005_first_sunset_bain",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1765032183012,
+      "tag": "0006_yielding_princess_powerful",
+      "breakpoints": true
+    }
+  ]
+}
