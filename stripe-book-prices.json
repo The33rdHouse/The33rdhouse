@@ -1,0 +1,37 @@
+{
+  "subscriptions": {
+    "seeker": {
+      "productId": "prod_TZDL4pKFNGgd9K",
+      "priceId": "price_1Sc4vER3n7wkcKKByNDPqu9G",
+      "amount": 3300,
+      "interval": "month"
+    },
+    "initiate": {
+      "productId": "prod_TZDMMiwPIjj2kW",
+      "priceId": "price_1Sc4vVR3n7wkcKKBN35hgNP5",
+      "amount": 7700,
+      "interval": "month"
+    },
+    "elder": {
+      "productId": "prod_TZDMjm7b3wwtKZ",
+      "priceId": "price_1Sc4voR3n7wkcKKBHa71vKg8",
+      "amount": 14400,
+      "interval": "month"
+    }
+  },
+  "books": {
+    "art-of-conscious-breathing": {
+      "productId": "prod_TZDOa3O1ZTd4Vt",
+      "priceId": "price_1Sc4yAR3n7wkcKKBi5fum7aT",
+      "slug": "art-of-conscious-breathing",
+      "amount": 2999
+    },
+    "somatic-awakening-body-temple": {
+      "productId": "prod_TZDQ8i4ZvnK42N",
+      "priceId": "PENDING",
+      "slug": "somatic-awakening-body-temple",
+      "amount": 3499
+    }
+  },
+  "note": "Create remaining book prices manually or via Stripe dashboard. Update database with: UPDATE products SET stripePriceId = 'price_xxx' WHERE slug = 'book-slug'"
+}

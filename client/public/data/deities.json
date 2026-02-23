@@ -1,0 +1,156 @@
+[
+  {
+    "id": 1,
+    "name": "Marduk",
+    "slug": "marduk",
+    "eraId": 1,
+    "tradition": "Babylonian",
+    "type": "god",
+    "description": "Supreme god who defeated chaos monster Tiamat and created the world from her body",
+    "domains": "[Creation, Kingship]",
+    "symbols": "[Dragon, Tablet of Destiny]"
+  },
+  {
+    "id": 2,
+    "name": "Inanna",
+    "slug": "inanna",
+    "eraId": 1,
+    "tradition": "Sumerian",
+    "type": "goddess",
+    "description": "Queen of heaven and earth, goddess of love and warfare, known for her descent to the underworld",
+    "domains": "[Love, War, Fertility]",
+    "symbols": "[Star, Lion]"
+  },
+  {
+    "id": 3,
+    "name": "Enki",
+    "slug": "enki",
+    "eraId": 1,
+    "tradition": "Sumerian",
+    "type": "god",
+    "description": "God of wisdom and fresh waters, creator of humans, keeper of divine knowledge",
+    "domains": "[Wisdom, Water, Magic]",
+    "symbols": "[Goat-fish, Flowing water]"
+  },
+  {
+    "id": 4,
+    "name": "Ashur",
+    "slug": "ashur",
+    "eraId": 1,
+    "tradition": "Assyrian",
+    "type": "god",
+    "description": "National god of Assyria, god of war and cosmic order",
+    "domains": "[War, Kingship, Sky]",
+    "symbols": "[Winged disk]"
+  },
+  {
+    "id": 5,
+    "name": "Ra",
+    "slug": "ra",
+    "eraId": 2,
+    "tradition": "Egyptian",
+    "type": "god",
+    "description": "Sun god who travels across sky daily, represents life force and divine order",
+    "domains": "[Sun, Creation, Order]",
+    "symbols": "[Sun disk, Falcon]"
+  },
+  {
+    "id": 6,
+    "name": "Osiris",
+    "slug": "osiris",
+    "eraId": 2,
+    "tradition": "Egyptian",
+    "type": "god",
+    "description": "God of the afterlife and resurrection, murdered and restored by Isis",
+    "domains": "[Afterlife, Resurrection, Agriculture]",
+    "symbols": "[Green skin, Crook and flail]"
+  },
+  {
+    "id": 7,
+    "name": "Isis",
+    "slug": "isis",
+    "eraId": 2,
+    "tradition": "Egyptian",
+    "type": "goddess",
+    "description": "Great mother goddess, master of magic, devoted wife who resurrected Osiris",
+    "domains": "[Magic, Motherhood, Healing]",
+    "symbols": "[Throne, Wings]"
+  },
+  {
+    "id": 8,
+    "name": "Thoth",
+    "slug": "thoth",
+    "eraId": 2,
+    "tradition": "Egyptian",
+    "type": "god",
+    "description": "God of wisdom, writing, and magic, keeper of divine knowledge",
+    "domains": "[Wisdom, Writing, Magic]",
+    "symbols": "[Ibis, Crescent moon]"
+  },
+  {
+    "id": 9,
+    "name": "Horus",
+    "slug": "horus",
+    "eraId": 2,
+    "tradition": "Egyptian",
+    "type": "god",
+    "description": "Sky god and son of Osiris, represents the living pharaoh",
+    "domains": "[Sky, Kingship, Vengeance]",
+    "symbols": "[Falcon, Eye of Horus]"
+  },
+  {
+    "id": 10,
+    "name": "Zeus",
+    "slug": "zeus",
+    "eraId": 3,
+    "tradition": "Greek",
+    "type": "god",
+    "description": "King of the gods, ruler of sky and thunder, father of gods and men",
+    "domains": "[Sky, Thunder, Kingship]",
+    "symbols": "[Eagle, Thunderbolt]"
+  },
+  {
+    "id": 11,
+    "name": "Athena",
+    "slug": "athena",
+    "eraId": 3,
+    "tradition": "Greek",
+    "type": "goddess",
+    "description": "Goddess of wisdom and strategic warfare, patron of Athens",
+    "domains": "[Wisdom, Warfare, Crafts]",
+    "symbols": "[Owl, Olive tree]"
+  },
+  {
+    "id": 12,
+    "name": "Hermes",
+    "slug": "hermes",
+    "eraId": 3,
+    "tradition": "Greek",
+    "type": "god",
+    "description": "Messenger god, guide of souls, god of commerce and thieves",
+    "domains": "[Communication, Commerce, Trickery]",
+    "symbols": "[Caduceus, Winged sandals]"
+  },
+  {
+    "id": 13,
+    "name": "Aphrodite",
+    "slug": "aphrodite",
+    "eraId": 3,
+    "tradition": "Greek",
+    "type": "goddess",
+    "description": "Goddess of love and beauty, born from sea foam",
+    "domains": "[Love, Beauty, Desire]",
+    "symbols": "[Dove, Mirror]"
+  },
+  {
+    "id": 14,
+    "name": "Apollo",
+    "slug": "apollo",
+    "eraId": 3,
+    "tradition": "Greek",
+    "type": "god",
+    "description": "God of sun, music, healing, and prophecy",
+    "domains": "[Sun, Music, Prophecy]",
+    "symbols": "[Lyre, Sun disk]"
+  }
+]
