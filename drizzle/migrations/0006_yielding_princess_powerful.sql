@@ -1,0 +1,22 @@
+CREATE TABLE `chartography_bookings` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`userId` int NOT NULL,
+	`birthDate` date NOT NULL,
+	`birthTime` varchar(10) NOT NULL,
+	`birthLocation` varchar(255) NOT NULL,
+	`birthLatitude` decimal(10,7),
+	`birthLongitude` decimal(10,7),
+	`primaryQuestion` text,
+	`focusAreas` text,
+	`additionalNotes` text,
+	`stripePaymentIntentId` varchar(255),
+	`amount` int NOT NULL,
+	`status` enum('pending','paid','scheduled','completed','canceled') NOT NULL DEFAULT 'pending',
+	`scheduledFor` timestamp,
+	`completedAt` timestamp,
+	`readingNotes` text,
+	`readingDocument` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `chartography_bookings_id` PRIMARY KEY(`id`)
+);
