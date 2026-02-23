@@ -1,0 +1,25 @@
+[build]
+  command = "pnpm install && pnpm run build"
+  publish = "dist/public"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions-dist"
+  node_bundler = "esbuild"
+
+[functions."api"]
+  # 26 second timeout for API function (Stripe webhooks, AI chat, etc.)
+  timeout = 26
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+
+# SPA fallback - serve index.html for all non-API, non-asset routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

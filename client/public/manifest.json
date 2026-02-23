@@ -1,0 +1,19 @@
+{
+  "name": "The 33rd House",
+  "short_name": "33rd House",
+  "description": "A 500-year initiatic journey through 12 Gates and 144 Realms. Consciousness transformation through sacred wisdom.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#c49b5c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle"]
+}
