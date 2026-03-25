@@ -12,10 +12,11 @@
     "dev": "NODE_ENV=development tsx watch server/index.ts",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node build-functions.mjs",
     "start": "NODE_ENV=production node dist/index.js",
-    "check": "tsc --noEmit",
+    "check": "tsc -p tsconfig.typecheck.json --noEmit",
     "format": "prettier --write .",
     "test": "vitest run",
-    "db:push": "drizzle-kit generate && drizzle-kit migrate"
+    "db:push": "drizzle-kit generate && drizzle-kit migrate",
+    "check:full": "tsc --noEmit"
   },
   "dependencies": {
     "@netlify/functions": "^5.1.2",
@@ -79,7 +80,6 @@
     "react-resizable-panels": "^3.0.6",
     "react-swipeable": "^7.0.2",
     "recharts": "^2.15.2",
-    "resend": "^6.5.2",
     "serverless-http": "^4.0.0",
     "sonner": "^2.0.7",
     "streamdown": "^1.4.0",

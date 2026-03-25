@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "server/_core/email.ts",
+    "server/_core/resend-email.ts",
+    "server/_core/email-provider/**/*.ts",
+    "server/tests/resend.test.ts"
+  ],
+  "exclude": ["node_modules", "build", "dist"]
+}

@@ -1,7 +1,18 @@
-import { Resend } from 'resend';
+import { getEmailProvider } from "./email-provider";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_EMAIL = 'The 33rd House <noreply@the33rdhouse.com>';
+
+async function sendViaProvider(payload: { from: string; to: string; subject: string; html: string }) {
+  const provider = getEmailProvider();
+
+  try {
+    const result = await provider.send(payload);
+    return { data: result, error: null as null };
+  } catch (error) {
+    return { data: null, error };
+  }
+}
+
 
 /**
  * Send order confirmation email
@@ -73,7 +84,7 @@ export async function sendOrderConfirmation(params: {
     </html>
   `;
   
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await sendViaProvider({
     from: FROM_EMAIL,
     to,
     subject: `Order Confirmation #${orderNumber}`,
@@ -154,7 +165,7 @@ export async function sendChartographyConfirmation(params: {
     </html>
   `;
   
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await sendViaProvider({
     from: FROM_EMAIL,
     to,
     subject: `Chartography Reading Confirmed #${bookingNumber}`,
@@ -222,7 +233,7 @@ export async function sendWelcomeEmail(params: {
     </html>
   `;
   
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await sendViaProvider({
     from: FROM_EMAIL,
     to,
     subject: 'Welcome to The 33rd House',

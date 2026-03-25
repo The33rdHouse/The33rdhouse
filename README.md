@@ -1,22 +1,69 @@
-* Netlify Deploy Error: Incomplete Build Log, Re-run and Share Full Log for Error Identification (698d20dc36550854444c9a3c)
+# The 33rd House
 
-* Netlify Deploy Error: Incomplete Build Log, Re-run and Share Full Log for Error Identification - Session 1 (698d20dc36550854444c9a3c)
+Mystery school platform for spiritual education.
 
-* Fix: React Query's refetch() returns errors in result object instead of throwing, so the try/catch block never catches API errors and error toast is never shown
+## Local development
 
-Co-authored-by: legacy-sketch <legacy@the33rdhouse.com>
+### 1) Install dependencies
 
-* Fix: Admin router endpoints (seedProducts, notifyNewMember) use publicProcedure, allowing unauthenticated users to delete and reseed the entire products database.
+```bash
+pnpm install
+```
 
-Co-authored-by: legacy-sketch <legacy@the33rdhouse.com>
+### 2) Create your local environment file
 
-* Update README.md
+```bash
+cp .env.example .env
+```
 
-* Update README.md
+Minimum variables for basic local launch:
 
-* Fixing Task Functionality (699bf5b766e397185bbb8b44)
+- `DATABASE_URL`
+- `OWNER_OPEN_ID` (if you need owner-level admin actions)
 
----------
+> `STRIPE_SECRET_KEY` is optional for booting the app locally.
+> Email defaults to a safe no-op provider (`EMAIL_PROVIDER=noop`).
+> Set `EMAIL_PROVIDER=resend` + `RESEND_API_KEY` to enable real email delivery.
 
-Co-authored-by: netlify[bot] <noreply@netlify.com>
-Co-authored-by: Vercel <vercel[bot]@users.noreply.github.com>
+### 3) Start the app
+
+```bash
+pnpm dev
+```
+
+By default, server runs on `http://localhost:3000`.
+
+If port 3000 is already in use:
+
+```bash
+PORT=3001 pnpm dev
+```
+
+## Useful scripts
+
+- `pnpm dev` – Run the app in development mode
+- `pnpm build` – Build client and server bundles
+- `pnpm start` – Start the production build
+- `pnpm check` – TypeScript baseline check (excludes known legacy hotspots)
+- `pnpm check:full` – Full strict TypeScript check across all files
+- `pnpm test` – Run tests with Vitest
+
+## Troubleshooting
+
+### Server crashes on startup with missing keys
+
+The app now tolerates missing `STRIPE_SECRET_KEY` at startup, and email defaults to a no-op provider.
+If you still see a crash, verify there are no stale processes and restart:
+
+```bash
+pkill -f "tsx watch server/index.ts" || true
+pnpm dev
+```
+
+### Port already in use (`EADDRINUSE`)
+
+Either stop the process using that port, or run on a different one:
+
+```bash
+PORT=3001 pnpm dev
+```

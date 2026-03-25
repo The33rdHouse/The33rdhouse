@@ -5,9 +5,20 @@ import * as db from "../db";
 import Stripe from "stripe";
 
 // Initialize Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2026-01-28.clover",
-});
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripe = stripeSecretKey
+  ? new Stripe(stripeSecretKey, {
+      apiVersion: "2026-01-28.clover",
+    })
+  : null;
+
+function getStripeClient() {
+  if (!stripe) {
+    throw new Error("Stripe is not configured on this environment.");
+  }
+
+  return stripe;
+}
 
 // Chartography reading price: $197
 const CHARTOGRAPHY_PRICE = 19700; // in cents
@@ -53,7 +64,7 @@ export const chartographyRouter = router({
       let customerId = user.stripeCustomerId;
       
       if (!customerId) {
-        const customer = await stripe.customers.create({
+        const customer = await getStripeClient().customers.create({
           email: user.email || undefined,
           name: user.name || undefined,
           metadata: {
@@ -65,7 +76,7 @@ export const chartographyRouter = router({
       }
       
       // Create payment intent
-      const paymentIntent = await stripe.paymentIntents.create({
+      const paymentIntent = await getStripeClient().paymentIntents.create({
         amount: CHARTOGRAPHY_PRICE,
         currency: "usd",
         customer: customerId,
@@ -109,7 +120,7 @@ export const chartographyRouter = router({
     }))
     .mutation(async ({ ctx, input }) => {
       // Verify payment intent
-      const paymentIntent = await stripe.paymentIntents.retrieve(input.paymentIntentId);
+      const paymentIntent = await getStripeClient().paymentIntents.retrieve(input.paymentIntentId);
       
       if (paymentIntent.status === "succeeded") {
         await db.updateChartographyBookingStatus(input.bookingId, "paid");
