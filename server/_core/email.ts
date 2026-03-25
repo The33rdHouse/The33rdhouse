@@ -1,6 +1,5 @@
-import { Resend } from 'resend';
+import { getEmailProvider } from "./email-provider";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_EMAIL = 'The 33rd House <noreply@the33rdhouse.com>';
 
 export interface SendEmailParams {
@@ -11,7 +10,8 @@ export interface SendEmailParams {
 }
 
 export async function sendEmail({ to, subject, html, text }: SendEmailParams) {
-  const { data, error } = await resend.emails.send({
+  const provider = getEmailProvider();
+  const result = await provider.send({
     from: FROM_EMAIL,
     to,
     subject,
@@ -19,13 +19,7 @@ export async function sendEmail({ to, subject, html, text }: SendEmailParams) {
     ...(text ? { text } : {}),
   });
 
-  if (error) {
-    console.error('Email send error:', error);
-    throw error;
-  }
-
-  console.log('Email sent successfully to:', to);
-  return { success: true, id: data?.id || 'resend-' + Date.now() };
+  return { ...result, from: FROM_EMAIL, provider: provider.name };
 }
 
 /**
