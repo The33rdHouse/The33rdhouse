@@ -4,9 +4,20 @@ import * as db from "../db";
 import Stripe from "stripe";
 
 // Initialize Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2026-01-28.clover",
-});
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripe = stripeSecretKey
+  ? new Stripe(stripeSecretKey, {
+      apiVersion: "2026-01-28.clover",
+    })
+  : null;
+
+function getStripeClient() {
+  if (!stripe) {
+    throw new Error("Stripe is not configured on this environment.");
+  }
+
+  return stripe;
+}
 
 export const stripeRouter = router({
   /**
@@ -42,7 +53,7 @@ export const stripeRouter = router({
       let customerId = user.stripeCustomerId;
       
       if (!customerId) {
-        const customer = await stripe.customers.create({
+        const customer = await getStripeClient().customers.create({
           email: user.email || undefined,
           name: user.name || undefined,
           metadata: {
@@ -56,7 +67,7 @@ export const stripeRouter = router({
       }
       
       // Create checkout session for one-time payment
-      const session = await stripe.checkout.sessions.create({
+      const session = await getStripeClient().checkout.sessions.create({
         customer: customerId,
         mode: "payment",
         payment_method_types: ["card"],
@@ -87,7 +98,7 @@ export const stripeRouter = router({
       let customerId = user.stripeCustomerId;
       
       if (!customerId) {
-        const customer = await stripe.customers.create({
+        const customer = await getStripeClient().customers.create({
           email: user.email || undefined,
           name: user.name || undefined,
           metadata: {
@@ -101,7 +112,7 @@ export const stripeRouter = router({
       }
       
       // Create checkout session
-      const session = await stripe.checkout.sessions.create({
+      const session = await getStripeClient().checkout.sessions.create({
         customer: customerId,
         mode: "subscription",
         payment_method_types: ["card"],
@@ -133,7 +144,7 @@ export const stripeRouter = router({
         throw new Error("No Stripe customer found");
       }
       
-      const session = await stripe.billingPortal.sessions.create({
+      const session = await getStripeClient().billingPortal.sessions.create({
         customer: user.stripeCustomerId,
         return_url: `${process.env.VITE_FRONTEND_FORGE_API_URL || "http://localhost:3000"}/dashboard`,
       });
@@ -156,7 +167,7 @@ export const stripeRouter = router({
         };
       }
       
-      const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
+      const subscription = await getStripeClient().subscriptions.retrieve(user.stripeSubscriptionId);
       const subData = subscription as any;
       
       return {
@@ -186,7 +197,7 @@ export const stripeRouter = router({
       let event: Stripe.Event;
       
       try {
-        event = stripe.webhooks.constructEvent(
+        event = getStripeClient().webhooks.constructEvent(
           input.body,
           input.signature,
           webhookSecret

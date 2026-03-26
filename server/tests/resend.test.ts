@@ -1,20 +1,36 @@
-import { describe, it, expect } from 'vitest';
-import { Resend } from 'resend';
+import { afterEach, describe, expect, it } from 'vitest';
+import { sendEmail } from '../_core/email';
+import { resetEmailProviderForTests } from '../_core/email-provider';
 
-describe('Resend API Integration', () => {
-  it('should validate Resend API key', async () => {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    
-    // Test by fetching API keys (lightweight endpoint)
-    const { data, error } = await resend.apiKeys.list();
-    
-    console.log('Resend API Response:', { data, error });
-    
-    if (error) {
-      throw new Error(`Resend API Error: ${JSON.stringify(error)}`);
-    }
-    
-    expect(error).toBeNull();
-    expect(data).toBeDefined();
-  }, 10000);
+describe('Email provider fallback', () => {
+  afterEach(() => {
+    delete process.env.EMAIL_PROVIDER;
+    delete process.env.RESEND_API_KEY;
+    resetEmailProviderForTests();
+  });
+
+  it('uses noop provider by default', async () => {
+    const result = await sendEmail({
+      to: 'test@example.com',
+      subject: 'Fallback test',
+      html: '<p>hi</p>',
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.id).toBe('email-disabled');
+    expect(result.provider).toBe('noop');
+  });
+
+  it('falls back to noop when resend is configured without key', async () => {
+    process.env.EMAIL_PROVIDER = 'resend';
+
+    const result = await sendEmail({
+      to: 'test@example.com',
+      subject: 'Fallback test',
+      html: '<p>hi</p>',
+    });
+
+    expect(result.success).toBe(false);
+    expect(result.provider).toBe('noop');
+  });
 });
